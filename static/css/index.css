@@ -1,0 +1,317 @@
+/* ============================================
+   现代化学术论文页面样式 - 液体玻璃风格 (Apple-like Aesthetic)
+   设计理念：通透、质感、柔和光影、极简主义
+   ============================================ */
+
+/* ========== 基础变量 ========== */
+:root {
+    /* 色彩系统 - Apple 风格偏冷灰色调 */
+    --primary-color: #1d1d1f;
+    --secondary-color: #86868b;
+    --accent-color: #0066cc; /* Apple Blue */
+    --accent-hover: #004499;
+    
+    /* 玻璃拟态参数 */
+    --glass-bg: rgba(255, 255, 255, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+    --glass-blur: 20px;
+    
+    /* 边框和光影 */
+    --border-light: rgba(255, 255, 255, 0.8);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.02);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.06);
+    
+    /* 间距 */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2.5rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 6rem;
+    
+    /* 圆角 - Apple 风格通常较大 */
+    --radius-sm: 12px;
+    --radius-md: 20px;
+    --radius-lg: 30px;
+    
+    /* 字体 */
+    --font-primary: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ========== 全局样式 ========== */
+body {
+    font-family: var(--font-primary);
+    font-weight: 400;
+    font-size: 17px; /* Apple 常用正文大小 */
+    line-height: 1.6;
+    color: var(--primary-color);
+    /* 流体渐变背景，营造空间感 */
+    background: radial-gradient(circle at 50% 0%, #fbfbfd 0%, #f5f5f7 100%);
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+}
+
+h1, h2, h3 {
+    color: var(--primary-color);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--accent-hover);
+}
+
+/* ========== 玻璃卡片通用类 ========== */
+.glass-card {
+    background-color: var(--glass-bg);
+    backdrop-filter: saturate(180%) blur(var(--glass-blur));
+    -webkit-backdrop-filter: saturate(180%) blur(var(--glass-blur));
+    border-radius: var(--radius-md);
+    /* 复合边框模拟光照质感 */
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+        0 4px 24px -1px rgba(0, 0, 0, 0.02), /* 柔和弥散阴影 */
+        0 0 0 1px rgba(255, 255, 255, 0.4) inset; /* 内发光边框 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ========== 布局容器 ========== */
+.page-container {
+    max-width: 980px; /* Apple 常用容器宽度 */
+    margin: 0 auto;
+    padding: var(--spacing-lg) var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+    .page-container {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+}
+
+/* ========== 标题区域 ========== */
+.title-section {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    /* 给标题区域也加个淡淡的底，突出层次 */
+    padding: var(--spacing-lg) var(--spacing-md);
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+}
+
+.title-section h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ========== 作者列表 ========== */
+.authors-section {
+    margin-bottom: var(--spacing-md);
+}
+
+.authors-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem 1.2rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.author-item {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.author-item a {
+    color: var(--accent-color);
+    border-bottom: none;
+}
+
+.author-item a:hover {
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.affiliations {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1.5rem;
+    margin-top: var(--spacing-sm);
+    color: var(--secondary-color);
+    font-size: 1rem;
+}
+
+/* ========== 链接按钮 - 胶囊风格 ========== */
+.links-section {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: var(--spacing-md);
+}
+
+.link-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.8rem;
+    border-radius: 999px; /* 胶囊圆角 */
+    background-color: #1d1d1f; /* 深黑 */
+    color: #fff !important;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 1px solid transparent;
+    text-decoration: none !important;
+}
+
+.link-button .icon {
+    margin-right: 0.6rem;
+    font-size: 1.1rem;
+}
+
+.link-button:hover {
+    background-color: #3a3a3c;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.link-button:active {
+    transform: scale(0.98);
+}
+
+/* ========== 分隔线 ========== */
+hr {
+    border: 0;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+    margin: var(--spacing-lg) auto;
+    width: 60%; /* 缩短分割线，更精致 */
+}
+
+/* ========== 内容区块 ========== */
+.content-section {
+    margin-bottom: var(--spacing-lg);
+    /* 将每个部分作为一个玻璃卡片 */
+    padding: var(--spacing-md);
+    background-color: var(--glass-bg);
+    backdrop-filter: saturate(180%) blur(var(--glass-blur));
+    -webkit-backdrop-filter: saturate(180%) blur(var(--glass-blur));
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+        0 4px 24px rgba(0, 0, 0, 0.02),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.5); /* 内部高光边框 */
+}
+
+.content-section h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    position: relative;
+}
+
+.content-section p {
+    text-align: justify;
+    text-justify: inter-ideograph;
+    margin-bottom: 1rem;
+    font-size: 1.1rem; /* 稍微加大正文 */
+    color: #333; /* 深灰偏黑 */
+    line-height: 1.7;
+}
+
+/* ========== 媒体容器 ========== */
+.video-container, .image-container {
+    /* 嵌套的玻璃卡片，稍微深一点或浅一点来区分层级 */
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
+    margin: var(--spacing-md) 0;
+    text-align: center;
+    /* 边框质感加强 */
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+}
+
+.video-container video, 
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-sm);
+    display: block;
+    margin: 0 auto;
+    /* 图片本身的微弱阴影 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.image-caption {
+    margin-top: 1.2rem;
+    font-size: 0.95rem;
+    color: var(--secondary-color);
+    font-weight: 400;
+    text-align: center;
+    max-width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+}
+
+/* ========== 致谢页脚 ========== */
+.acknowledgements {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(0,0,0,0.05);
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+}
+
+.acknowledgements a {
+    color: var(--secondary-color);
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.acknowledgements a:hover {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* ========== 响应式调整 ========== */
+@media (max-width: 768px) {
+    .title-section h1 {
+        font-size: 2rem;
+    }
+
+    .links-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .link-button {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .content-section {
+        padding: 1.5rem;
+    }
+}
